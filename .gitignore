@@ -1,0 +1,13 @@
+# IDE / OS
+.vscode/
+.DS_Store
+*.swp
+
+# Claude Code
+.claude/
+
+# Notes de travail
+z-tampon.md
+
+# Fichier Dart (prototype initial)
+*.dart

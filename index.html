@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preuve Citoyenne SNCF — Meilleure Tarification</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- === HEADER === -->
+  <header class="header">
+    <h1>Pourquoi SNCF Connect vous fait payer trop cher</h1>
+    <p class="subtitle">
+      Preuve citoyenne : un algorithme trivial s&eacute;lectionne automatiquement
+      la meilleure carte de r&eacute;duction par segment. SNCF Connect ne le fait pas.
+    </p>
+    <span class="badge">Donn&eacute;es 100% publiques SNCF Open Data</span>
+    <span id="data-badge" class="badge" style="background: var(--orange); display: none;"></span>
+  </header>
+
+  <!-- === MAIN === -->
+  <main class="container">
+
+    <!-- Input panel -->
+    <section class="panel">
+      <h2 class="panel-title">
+        <span>&#128646;</span> Choisir un trajet
+      </h2>
+
+      <!-- Showcase routes -->
+      <div class="showcase-section">
+        <h3>Trajets d&eacute;monstration</h3>
+        <div id="showcase-routes" class="showcase-routes"></div>
+      </div>
+
+      <!-- Departure / Arrival -->
+      <div class="input-row">
+        <div class="input-group">
+          <label for="depart-input">D&eacute;part</label>
+          <div class="autocomplete-wrapper">
+            <input type="text" id="depart-input" placeholder="Gare de d&eacute;part..." autocomplete="off">
+            <div id="depart-list" class="autocomplete-list"></div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="arrive-input">Arriv&eacute;e</label>
+          <div class="autocomplete-wrapper">
+            <input type="text" id="arrive-input" placeholder="Gare d'arriv&eacute;e..." autocomplete="off">
+            <div id="arrive-list" class="autocomplete-list"></div>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Type de jour</label>
+          <div id="day-toggle" class="day-toggle">
+            <button data-day="weekday" class="active">Semaine</button>
+            <button data-day="weekend">Week-end</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Age input -->
+      <div class="age-section">
+        <label for="age-input">&Acirc;ge du voyageur <span class="age-hint">(filtre les cartes &eacute;ligibles)</span></label>
+        <div class="age-input-row">
+          <input type="number" id="age-input" min="4" max="99" placeholder="ex: 35" autocomplete="off">
+          <button id="age-clear" class="age-clear-btn" title="Effacer">&times;</button>
+        </div>
+      </div>
+
+      <!-- Card selection -->
+      <div class="cards-section">
+        <h3>Vos cartes de r&eacute;duction <span id="cards-count" class="cards-count"></span></h3>
+        <div id="cards-grid" class="cards-grid"></div>
+      </div>
+    </section>
+
+    <!-- Results panel -->
+    <section id="results"></section>
+
+  </main>
+
+  <!-- === FOOTER === -->
+  <footer class="footer">
+    <p>
+      <strong>Complexit&eacute; algorithmique :</strong>
+      <span class="complexity">O(S &times; C)</span>
+      &mdash; S segments, C cartes &mdash; temps d'ex&eacute;cution &lt; 1ms
+      &mdash; 18 098 tarifs officiels, 2 196 gares, 11 r&eacute;gions
+    </p>
+    <p>
+      Donn&eacute;es sources :
+      <a href="https://ressources.data.sncf.com" target="_blank">SNCF Open Data</a> &middot;
+      <a href="https://www.ter.sncf.com/normandie" target="_blank">TER Normandie</a> &middot;
+      <a href="https://www.ter.sncf.com/centre-val-de-loire" target="_blank">TER Centre-Val de Loire</a> &middot;
+      <a href="https://www.ter.sncf.com/hauts-de-france" target="_blank">TER Hauts-de-France</a> &middot;
+      <a href="https://www.ter.sncf.com/grand-est" target="_blank">TER Grand Est</a> &middot;
+      <a href="https://www.ter.sncf.com/pays-de-la-loire" target="_blank">TER Pays de la Loire</a> &middot;
+      <a href="https://www.ter.sncf.com/nouvelle-aquitaine" target="_blank">TER Nouvelle-Aquitaine</a> &middot;
+      <a href="https://www.ter.sncf.com/auvergne-rhone-alpes" target="_blank">TER AURA</a> &middot;
+      <a href="https://www.ter.sncf.com/sud-provence-alpes-cote-d-azur" target="_blank">TER PACA</a> &middot;
+      <a href="https://www.ter.sncf.com/bourgogne-franche-comte" target="_blank">TER BFC</a>
+    </p>
+    <p>
+      Preuve citoyenne &mdash; Mars 2026 &mdash;
+      Il n'existe aucune justification technique &agrave; l'absence de cet algorithme dans SNCF Connect.
+    </p>
+  </footer>
+
+  <!-- === SCRIPTS (ordre : data → algo → ui → app) === -->
+  <script src="js/data.js"></script>
+  <script src="js/tarifs-loader.js"></script>
+  <script src="js/algorithm.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
